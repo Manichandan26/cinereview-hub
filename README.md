@@ -1,4 +1,5 @@
-# Welcome to your Movie reveiw project
+# Welcome to your Movie Review System
+
 
 ## Project info
 
