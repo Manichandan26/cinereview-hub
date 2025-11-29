@@ -14,7 +14,96 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      movies: {
+        Row: {
+          created_at: string | null
+          genre: string | null
+          movie_id: string
+          poster_url: string | null
+          release_year: number | null
+          title: string
+        }
+        Insert: {
+          created_at?: string | null
+          genre?: string | null
+          movie_id?: string
+          poster_url?: string | null
+          release_year?: number | null
+          title: string
+        }
+        Update: {
+          created_at?: string | null
+          genre?: string | null
+          movie_id?: string
+          poster_url?: string | null
+          release_year?: number | null
+          title?: string
+        }
+        Relationships: []
+      }
+      reviews: {
+        Row: {
+          comment: string | null
+          created_at: string | null
+          movie_id: string | null
+          rating: number | null
+          review_id: string
+          user_id: string | null
+        }
+        Insert: {
+          comment?: string | null
+          created_at?: string | null
+          movie_id?: string | null
+          rating?: number | null
+          review_id?: string
+          user_id?: string | null
+        }
+        Update: {
+          comment?: string | null
+          created_at?: string | null
+          movie_id?: string | null
+          rating?: number | null
+          review_id?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_movie_id_fkey"
+            columns: ["movie_id"]
+            isOneToOne: false
+            referencedRelation: "movies"
+            referencedColumns: ["movie_id"]
+          },
+          {
+            foreignKeyName: "reviews_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["user_id"]
+          },
+        ]
+      }
+      users: {
+        Row: {
+          created_at: string | null
+          email: string
+          user_id: string
+          username: string
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          user_id?: string
+          username: string
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          user_id?: string
+          username?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
